@@ -1,11 +1,11 @@
 #edit ctl file for iBPP
 
-ctls <- scan('name.ctl',sep='\n',what='character');
-tres <- scan('ibpp.nwk',sep='\n',what='character');
-probs <- read.csv('probs.csv', header = FALSE);
-mcmcN <- round(probs * 1000000);
+ctls <- scan('name.ctl',sep='\n',what='character');#name of one iBPP control file as template
+tres <- scan('ibpp.nwk',sep='\n',what='character');#tree topology file
+probs <- read.csv('probs.csv', header = FALSE);#tree probability file
+mcmcN <- round(probs * 1000000);#to have a total of 10e6 post-burnin MCMC samples from all delimitation analyses
 
-for(iter in 1:1739){
+for(iter in 1:1739){#in my example, there are totally 1739 different topologies
 	outpattern <- '(out)([[:digit:]]+)(.txt)';
 	outreplace <- paste('out',iter,'.txt',sep ='');
 	testctl<-gsub(outpattern,outreplace,ctls);
